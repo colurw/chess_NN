@@ -1,0 +1,26 @@
+1. Create new virtual environment in terminal:
+
+   >> python -m .venv
+
+
+2. Activate virtual environment:
+
+    >> .\\.venv\Scripts\activate
+
+
+3. Install dependencies in requirements.txt
+
+
+4. Navigate to django_wrapper folder in the terminal: 
+
+    >> cd django_wrapper
+
+
+5. Start django server:
+
+    >> python manage.py runserver
+
+
+6. Open browser and visit address:
+
+    http://127.0.0.1:8000/

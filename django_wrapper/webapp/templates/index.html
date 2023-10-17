@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Chess_NN</title>
+    </head>
+
+    <body>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="submit" name="option1" value="Go">
+            <label for="option1"> Kings's Indian Defence - Main Line</label>
+            <br>
+            <input type="submit" name="option2" value="Go">
+            <label for="option2"> Nimzo Defence - Rubenstein Variation</label>
+            <br>
+            <input type="submit" name="option3" value="Go"> 
+            <label for="option3"> Ruy Lopez - Marshall Attack</label> <br>
+            <br>
+        </form>
+
+        <div font-size:20>
+            <img src="static/board_letters.png" alt="files" width="375" height="16"> <br>
+            <img src="data:image/png;base64, {{ image64 }}" alt="board" width="375" height="375">
+            <img src="static/board_numbers.png" alt="ranks" width="18" height="375"> 
+            <br>
+        </div>
+
+        <form method="POST" action="">   
+            {% csrf_token %}
+            <label for="human_move">enter move: </label>
+            <input type="text" name="human_move" size="10">
+            <input type="submit" name="submit"> <br>
+            <br>
+        </form>
+
+        your move: {{ move }} <br>
+        my move: {{ ai_move }} <br>
+
+    </body>
+</html>

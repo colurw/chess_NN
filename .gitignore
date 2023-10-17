@@ -1,0 +1,13 @@
+/.venv
+/.vscode
+/board.png
+/models/matein1a
+/models/matein1b
+/models/matein1c
+/models/matein1d
+/models/matein2_0
+/models/matein2_1
+/models/matein2_2
+/models/matein2_3
+/training data/chess_puzzles.csv
+/__pycache__
