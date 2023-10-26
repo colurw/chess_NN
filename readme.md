@@ -95,6 +95,10 @@ neural network's prediction of the solution against the ground truth solution fr
 the database.  Four _puzzle-solution-prediction_ triplets are converted into a graphic 
 and saved as a .png file.  These can be found in the /results/ folder.
 
+General Solver - Ensemble Results            |  Mate In One - Ensemble Results
+:-------------------------:|:-------------------------:
+![image](https://github.com/colurw/chess_NN/assets/66322644/6e429fcc-8051-4741-99e5-485b73b0fc8c)  |  ![image](https://github.com/colurw/chess_NN/assets/66322644/dd5e83f9-fbc8-4f42-b255-3d3e965effd9)
+
 ### _6_solver_ensemble.py  
 Several neural networks are presented with the same board state.  The 
 predicted solutions are combined according to decision criteria to produce an 
