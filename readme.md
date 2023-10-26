@@ -115,7 +115,8 @@ General Solver - Ensemble Results | Mate In One - Ensemble Results
 <img src="https://github.com/colurw/chess_NN/assets/66322644/b3d419ff-06b9-4444-85ba-99531d4db79c" align="right" width="350px"/>
 Creates an IP connection to the browser over the Localhost.  When Views.py is 
 called by Urls.py it returns data that populates the Index.html template with the 
-current board image and relevant messages.  Form data from the browser are sent back
+current board image and relevant messages.  
+Form data from the browser are sent back
 to views.py as POST get requests, converted into tensors, then passed to 
 Ensemble_solver(), which returns a tensor representing the move to be played in 
 response.  This tensor is converted by Local_chess_tools.py into an image of the next 
