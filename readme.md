@@ -55,8 +55,8 @@ streak of poor random moves in a row, which can easily be taken advantage of by 
 reasonable human player, leading to an unsurmountable upper hand.
 
 However... It is possible to extract much more (5-7x) training data from 
-the Lichess.com puzzle sequences (I only used the first step of each one).  And, if 
-more RAM was made available much larger neural networks could be trained. Making both
+the Lichess.com puzzle sequences (It currently only uses the first step of each sequence).
+Also, if more RAM was available, much larger neural networks could be trained. Making both
 of these improvements would almost certainly result in a significant boost in performance.
 
 ## What's Under The Hood
