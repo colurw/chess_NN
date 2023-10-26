@@ -95,9 +95,7 @@ neural network's prediction of the solution against the ground truth solution fr
 the database.  Four _puzzle-solution-prediction_ triplets are converted into a graphic 
 and saved as a .png file.  These can be found in the /results/ folder.
 
-General Solver - Ensemble Results            |  Mate In One - Ensemble Results
-:-------------------------:|:-------------------------:
-![image](https://github.com/colurw/chess_NN/assets/66322644/6e429fcc-8051-4741-99e5-485b73b0fc8c)  |  ![image](https://github.com/colurw/chess_NN/assets/66322644/dd5e83f9-fbc8-4f42-b255-3d3e965effd9)
+![image](https://github.com/colurw/chess_NN/assets/66322644/6fe6e368-3d26-414a-b4c0-a2235b706bf2)
 
 ### _6_solver_ensemble.py  
 Several neural networks are presented with the same board state.  The 
@@ -107,8 +105,11 @@ of producing, analogous to classic wisdom-of-the-crowds quantity estimation find
 
 ### _7_ensemble_graph_maker.py  
 Visualises the performance gains made by increasing the
-number of neural networks in the ensemble.  An example can be found at /training 
-graphs/general/GS ensemble graph.png
+number of neural networks in the ensemble.  
+
+General Solver - Ensemble Results | Mate In One - Ensemble Results
+:-------------------------:|:-------------------------:
+![image](https://github.com/colurw/chess_NN/assets/66322644/a8d73813-49a5-42b6-93f0-e1c9a1715ff1)  |  ![image](https://github.com/colurw/chess_NN/assets/66322644/0d6b8c08-e593-4aaa-992f-24eb778094cf)
 
 ### django web framework
 Creates an IP connection to the browser over the Localhost.  When Views.py is 
