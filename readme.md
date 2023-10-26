@@ -84,7 +84,7 @@ When given a one-hot tensor, creates .png image of the chess
 board.  Used to check the training data is as expected / free of errors.
 
 ### _4_trainer.py  
-<img src="https://github.com/colurw/chess_NN/assets/66322644/d768ea9f-b188-4423-8232-8ba7712a8182" align="right" width="350px"/>
+<img src="https://github.com/colurw/chess_NN/assets/66322644/d768ea9f-b188-4423-8232-8ba7712a8182" align="right" width="400px"/>
 Creates training, validation, and testing datasets containing x,y pairs of one-
 hot tensors that represent puzzle board states.  A neural network is initialised, trained, 
 assessed for its ability to find the optimum move, then saves the model.  The training 
