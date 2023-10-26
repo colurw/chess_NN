@@ -142,5 +142,5 @@ checking routines.  This performance is likely achieved by the smaller (and less
 varied) dataset being able to be more comprehensively modelled, by a neural network 
 limited to local hardware resources.
 
-_Puzzle  -  Stockfish Solution  -  Chess_NN Solution:_
+Puzzle -- Stockfish Calculated Solution -- Chess_NN Predicted Solution:
 ![image](https://github.com/colurw/chess_NN/assets/66322644/18e816d6-794d-43f7-a302-04bee02c7056)
