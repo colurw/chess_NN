@@ -84,10 +84,18 @@ When given a one-hot tensor, creates .png image of the chess
 board.  Used to check the training data is as expected / free of errors.
 
 ### _4_trainer.py  
+<img src="https://github.com/colurw/chess_NN/assets/66322644/d768ea9f-b188-4423-8232-8ba7712a8182" align="right" width="350px"/>
 Creates training, validation, and testing datasets containing x,y pairs of one-
-hot tensors that represent puzzle board states.  Initialises a neural network, trains it, 
-assesses its ability to findthe best move, and saves the model.  Plots the training 
-history in order to help diagnose over-training or an under-powered network.
+hot tensors that represent puzzle board states.  A neural network is initialised, trained, 
+assessed for its ability to find the optimum move, then saves the model.  The training 
+history is plotted, in order to help diagnose over-training or an under-powered network. <br><br>
+The figure to the right shows an over-fitted neural network.  After the eighth epoch of
+training the validation loss starts to increase, whilst the training loss continues to
+decrease.  This happens when the model stops learning and instead begins to memorise the 
+training data.  This leads to some loss of its ability to generalise, when solving 
+previously-unseen puzzles. <br><br>
+The accuracy graph (lhs) is less useful here due to the small sample size - the value is 
+calculated based on one the results from a single board square. <br clear="right"/>
 
 ### _5_solver.py  
 Picks random puzzles from the testing dataset, then compares the 
@@ -106,10 +114,9 @@ of producing, analogous to classic wisdom-of-the-crowds quantity estimation find
 ### _7_ensemble_graph_maker.py  
 Visualises the performance gains made by increasing the
 number of neural networks in the ensemble.  
-
-General Solver - Ensemble Results | Mate In One - Ensemble Results
-:-------------------------:|:-------------------------:
-![image](https://github.com/colurw/chess_NN/assets/66322644/a8d73813-49a5-42b6-93f0-e1c9a1715ff1)  |  ![image](https://github.com/colurw/chess_NN/assets/66322644/0d6b8c08-e593-4aaa-992f-24eb778094cf)
+<img src="https://github.com/colurw/chess_NN/assets/66322644/08efebbb-eae9-40ed-8d75-311a526c9108" align="left" width="500px"/>
+<img src="https://github.com/colurw/chess_NN/assets/66322644/c0037b89-711b-40ab-9581-9126eed443f0" align="left" width="500px"/>
+<br clear="left"/>
 
 ### django web framework
 <img src="https://github.com/colurw/chess_NN/assets/66322644/b3d419ff-06b9-4444-85ba-99531d4db79c" align="right" width="300px"/>
