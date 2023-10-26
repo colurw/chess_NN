@@ -116,18 +116,16 @@ General Solver - Ensemble Results | Mate In One - Ensemble Results
 Creates an IP connection to the browser over the Localhost.  When Views.py is 
 called by Urls.py it returns data that populates the Index.html template with the 
 current board image and relevant messages.  <br><br>
-Form data from the browser are sent back
-to views.py as POST get requests, converted into tensors, then passed to 
-Ensemble_solver(), which returns a tensor representing the move to be played in 
-response.  <br><br>
+Form data from the browser are sent back to views.py as POST get requests, converted
+into tensors, then passed to Ensemble_solver(), which returns a tensor representing 
+the move to be played in response.  <br><br>
 This tensor is converted by Local_chess_tools.py into an image of the next 
 board state, and then into a 64-bit string, which can be sent as an argument of 
 HttpRequest() back to Index.html <br><br>
 As the training data does not include early-game board states, the user must initially 
 select from one of three fully-developed opening options.  This also avoids having to 
 implement a castling feature - moves of which were also excluded from the training 
-dataset to allow less-complex functions when encoding raw training data.
-<br clear="right"/>
+dataset to allow less-complex functions when encoding raw training data. <br clear="right"/>
 
 ### m2_[filename].py  
 Does the same things as the above files, but only considers a subset of
@@ -138,3 +136,5 @@ checking routines.  This performance is likely achieved by the smaller (and less
 varied) dataset being able to be more comprehensively modelled, by a neural network 
 limited to local hardware resources.
 
+_Puzzle  -  Stockfish Solution  -  Chess_NN Solution:_
+![image](https://github.com/colurw/chess_NN/assets/66322644/18e816d6-794d-43f7-a302-04bee02c7056)
