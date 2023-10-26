@@ -112,7 +112,7 @@ General Solver - Ensemble Results | Mate In One - Ensemble Results
 ![image](https://github.com/colurw/chess_NN/assets/66322644/a8d73813-49a5-42b6-93f0-e1c9a1715ff1)  |  ![image](https://github.com/colurw/chess_NN/assets/66322644/0d6b8c08-e593-4aaa-992f-24eb778094cf)
 
 ### django web framework
-<img src="https://github.com/colurw/chess_NN/assets/66322644/b3d419ff-06b9-4444-85ba-99531d4db79c" align="right" width="350px"/>
+<img src="https://github.com/colurw/chess_NN/assets/66322644/b3d419ff-06b9-4444-85ba-99531d4db79c" align="right" width="300px"/>
 Creates an IP connection to the browser over the Localhost.  When Views.py is 
 called by Urls.py it returns data that populates the Index.html template with the 
 current board image and relevant messages.  
