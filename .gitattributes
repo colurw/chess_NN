@@ -1,2 +1,1 @@
-
-.django_wrapper/** linguist-vendored
+*.PureBasic linguist-detectable=false
