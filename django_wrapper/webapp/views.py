@@ -1,4 +1,4 @@
-""" Receives setup and player's move data posted from index.html.  Returns a http response. """
+""" Receives board setup and player's move data posted from index.html.  Returns a http response. """
 
 from django.shortcuts import render
 from django.http import HttpResponse
