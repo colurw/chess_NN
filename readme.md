@@ -5,7 +5,7 @@ frontend, playable in a browser, by virtue of Python's Django web framework.  Wh
 given a board state, it attempts to predict what the best move would be - according to 
 Stockfish chess engine, and then plays that move.
 
-Stockfish is the dominant chess engine, capable of beating _the_ current best human player
+Stockfish is the dominant chess engine, capable of beating the current best human player
 98-99% of the time.  It does this by searching through an exponentially-expanding tree
 of possible moves, for as many future turns as time allows.  Typically competitors try to 
 reduce its performance by limiting the duration of this search, or by forcing it to play
