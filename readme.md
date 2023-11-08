@@ -14,7 +14,7 @@ non-optimum moves.
 When tested on previously unseen chess puzzles from the testing dataset, Chess_NN 
 currently predicts Stockfish's optimum move for 47% of boards, and does so roughly 
 1000x faster.  However, it is also unable to predict any move 24% of the time, so 
-resorts to making a randomly-chosen legal move. In the remaining 19% of cases, it 
+resorts to making a randomly-chosen legal move. In the remaining 29% of cases, it 
 plays a non-optimal legal move of indeterminate quality.
 
 ## How A Neural Network Learns Chess
