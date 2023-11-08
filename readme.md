@@ -123,7 +123,7 @@ number of neural networks in the ensemble.
 Creates an IP connection to the browser over the Localhost.  When Views.py is 
 called by Urls.py it returns data that populates the Index.html template with the 
 current board image and relevant messages.  <br><br>
-Form data from the browser are sent back to views.py as POST get requests, converted
+Form data from the browser are sent back to views.py as POST requests, converted
 into tensors, then passed to Ensemble_solver(), which returns a tensor representing 
 the move to be played in response.  <br><br>
 This tensor is converted by Local_chess_tools.py into an image of the next 
