@@ -100,7 +100,7 @@ calculated based on one the results from a single board square. <br clear="right
 ### _5_solver.py  
 Picks random puzzles from the testing dataset, then compares the 
 neural network's prediction of the solution against the ground truth solution from 
-the database. _Puzzle-solution-prediction_ triplets are converted into a graphic 
+the database. _Puzzle-solution-prediction_ triplets are converted into an ASCII-based \u265E ) graphic 
 and saved as a .png file.  These can be found in the /results/ folder.
 
 Checkmate-In-One Puzzle -> Stockfish Calculated Solution -> Chess_NN Predicted Solution:
