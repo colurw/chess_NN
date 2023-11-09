@@ -136,12 +136,14 @@ dataset to allow less-complex functions when encoding raw training data. <br cle
 
 ### m2_[filename].py  
 Does the same things as the above files, but only considers a subset of
-the Lichess database - the 'Mate In Two' puzzles.  Chess_NN is surprisingly good at 
+the Lichess database - the 'Mate In Two' puzzles.  Chess_NN is surprisingly good* at 
 solving these, considering it has to predict a sequence of three moves correctly - an 
 amount of moves that prevents any reasonably-implementable error/illegal move 
 checking routines.  This performance is likely achieved by the smaller (and less 
 varied) dataset being able to be more comprehensively modelled, by a neural network 
 limited to local hardware resources.
+
+*All 64 squares correctly predicted on 58% of test_set boards.
 
 Mate-In-Two Puzzle -> Stockfish Calculated Solution -> Chess_NN Predicted Solution:
 ![image](https://github.com/colurw/chess_NN/assets/66322644/f6764edb-64e5-41ab-8759-973677898d24)
