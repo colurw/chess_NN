@@ -144,4 +144,5 @@ varied) dataset being able to be more comprehensively modelled, by a neural netw
 limited to local hardware resources.
 
 Mate-In-Two Puzzle -> Stockfish Calculated Solution -> Chess_NN Predicted Solution:
-![image](https://github.com/colurw/chess_NN/assets/66322644/18e816d6-794d-43f7-a302-04bee02c7056)
+![image](https://github.com/colurw/chess_NN/assets/66322644/f6764edb-64e5-41ab-8759-973677898d24)
+
