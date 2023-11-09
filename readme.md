@@ -1,4 +1,4 @@
-# Chess_NN
+# chess_NN
 
 Chess_NN is chess engine powered by an ensemble of neural networks.  It has a web-app 
 frontend, playable in a browser, by virtue of Python's Django web framework.  When 
