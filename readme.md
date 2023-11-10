@@ -32,7 +32,7 @@ The neural network is based on the Keras Functional API, which allows the user t
 build complex networks with non-standard topologies.  The ChessNN input layer 
 accepts a 64x13 one-hot array (64 squares than can be filled with one of 6 black, 
 6 white, or no pieces) and the output is 64 multi-class classifiers.  Each classifier
-is a soft-max layer that receives a 13-feature probability vector, in which the highest 
+is a soft-max layer that receives a 13-feature probability vector - where the highest 
 number identifies the predicted piece for that square.
 
 ![image](https://github.com/colurw/chess_NN/assets/66322644/d7e9fce8-5cc0-487e-88b7-6c2e12d32a28 "chess_NN network diagram")
