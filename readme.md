@@ -93,12 +93,12 @@ Creates training, validation, and testing datasets containing x,y pairs of one-
 hot tensors that represent puzzle board states.  A neural network is initialised, trained, 
 assessed for its ability to find the optimal move, then saved.  The training 
 history is plotted, in order to help diagnose over-training or an under-powered network. <br><br>
-The figure to the right shows an over-fitted neural network.  After the eighth epoch of
+The graph (right) shows an over-fitted neural network.  After the eighth epoch of
 training, the validation loss starts to increase, whilst the training loss continues to
 decrease.  This happens when the model stops learning and instead begins to memorise the 
 training data.  This leads to some loss of its ability to generalise, when solving 
 previously-unseen puzzles. <br><br>
-The accuracy graph (lhs) is less useful here due to the small sample size - the value is 
+The accuracy graph (left) is less useful here due to the small sample size - the value is 
 calculated based on one the results from a single board square. <br clear="right"/>
 
 ### _5_solver.py  
