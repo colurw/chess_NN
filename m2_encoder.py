@@ -92,8 +92,8 @@ print(len(solution), 'puzzles encoded')
 with open("mate_in_2.pickle", "wb") as file:
     pickle.dump((mate_in_two), file)
 
-with open("mate_in_1.pickle", "wb") as file:
-    pickle.dump((mate_in_one), file)
+# with open("mate_in_1.pickle", "wb") as file:
+#     pickle.dump((mate_in_one), file)
 
 with open("solution.pickle", "wb") as file:
     pickle.dump((solution), file)

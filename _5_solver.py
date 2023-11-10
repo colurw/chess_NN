@@ -26,8 +26,9 @@ y_test = np.array(solution[1300000:], dtype='bool')
 print(x_test.shape, y_test.shape, '\n')
 
 # Load model from chess_trainer.py
-model = keras.models.load_model('models/matein1a')
-# Calculate overall accuracy
+model = keras.models.load_model('models/matein1b')
+
+# calculate overall accuracy
 count = 0
 for i in (range(500)):
     # Get random board
@@ -46,31 +47,31 @@ for i in (range(500)):
     score = str(round(100*count/500, 2))
 print(score, '% of puzzles accurately solved')
 
-# Solve four puzzles from the test dataset
-images = []
-for i in (range(4)):
-    rand_num = random.sample(range(len(x_test)), 1)
-    x_sample = x_test[rand_num]
-    y_truth = y_test[rand_num]
-    # Evaluate board
-    y_predict = model(x_sample)
-    y_predict = np.array(y_predict)
-    # Convert output and stitch images
-    im = im_concat_3(one_hot_to_png(x_sample), 
-                   one_hot_to_png(y_truth), 
-                   one_hot_to_png(y_predict))
-    images.append(im)
-    print(is_only_one_move(x_sample, y_predict))
+for num in range(10):
+    # Solve four puzzles from the test dataset
+    images = []
+    for i in (range(4)):
+        rand_num = random.sample(range(len(x_test)), 1)
+        x_sample = x_test[rand_num]
+        y_truth = y_test[rand_num]
+        # Evaluate board
+        y_predict = model(x_sample)
+        y_predict = np.array(y_predict)
+        # Convert output and stitch images
+        im = im_concat_3(one_hot_to_png(x_sample), 
+                    one_hot_to_png(y_truth), 
+                    one_hot_to_png(y_predict))
+        images.append(im)
+        #print(is_only_one_move(x_sample, y_predict))
 
-# Stitch all solved puzzles
-timestr = time.strftime("%Y%m%d-%H%M%S")
-score = score.replace('.', '')
-im_concat_4((images[0]), 
-          (images[1]),
-          (images[2]), 
-          (images[3])).save('results/m1_{}_{}.png'.format(timestr, score))
+    # Stitch all solved puzzles
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    im_concat_4((images[0]), 
+            (images[1]),
+            (images[2]), 
+            (images[3])).save('results/M2_{}.png'.format(timestr))
 
-# Display image
-img = mpimg.imread('results/m1_{}_{}.png'.format(timestr, score))
-plt.imshow(img)
-plt.show()
+    # Display image
+    img = mpimg.imread('results/M2_{}.png'.format(timestr))
+    plt.imshow(img)
+    plt.show()

@@ -11,3 +11,8 @@
 /models/matein2_3
 /training data/chess_puzzles.csv
 /__pycache__
+_4_trainer copy.py
+mateIn2_white.csv
+mateIn2.csv
+training data/mate_in_2.pickle
+training data/solution.pickle

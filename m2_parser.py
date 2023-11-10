@@ -3,7 +3,7 @@ import itertools
 
 # Parse mateIn2 puzzles from lichess database
 count = 0
-with open('chess_puzzles.csv', 'r') as csvfile:
+with open('training data/chess_puzzles.csv', 'r') as csvfile:
     reader = csv.reader(csvfile)
     for row in itertools.islice(reader, 3000000):
         if str('mateIn2') in str(row) and len(str(row[2])) == 19:  # and ignore puzzles with queening

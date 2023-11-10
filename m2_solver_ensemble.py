@@ -21,15 +21,15 @@ print(x_test.shape, y_test.shape, '\n')
 # Load models from chess_trainer.py
 model_0 = keras.models.load_model('models/matein2_0')
 model_1 = keras.models.load_model('models/matein2_1')
-# model_2 = keras.models.load_model('models/matein2_2')
-# model_3 = keras.models.load_model('models/matein2_3')
+model_2 = keras.models.load_model('models/matein2_2')
+model_3 = keras.models.load_model('models/matein2_3')
 # model_4 = keras.models.load_model('models/matein2_4')
 # model_5 = keras.models.load_model('models/matein2_5')
 # model_6 = keras.models.load_model('models/matein2_6')
 # model_7 = keras.models.load_model('models/matein2_7')
 # model_8 = keras.models.load_model('models/matein2_8')
-model_10 = keras.models.load_model('models/matein2')
-models = [model_10, model_0, model_1]#, model_2, model_3, model_4, model_5, model_6, model_7, model_8]
+# model_10 = keras.models.load_model('models/matein2')
+models = [model_0, model_1, model_2, model_3] #, model_4, model_5, model_6, model_7, model_8]
 
 # Calculate ensemble accuracy rate
 count = 0
