@@ -140,7 +140,7 @@ the Lichess database - the 'Mate In Two' puzzles.  Chess_NN is surprisingly good
 solving these, considering it has to predict a sequence of three moves correctly - an 
 amount of moves that prevents any reasonably-implementable error/illegal move 
 checking routines.  This performance is likely achieved by the smaller (and less 
-varied) dataset being able to be more comprehensively modelled, by a neural network 
+varied) dataset being able to be more comprehensively modelled by a neural network 
 limited to local hardware resources.
 
 *All 64 squares correctly predicted on 58% of test_set boards.
