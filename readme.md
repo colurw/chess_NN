@@ -34,7 +34,7 @@ accepts a 64x13 one-hot array (64 squares than can be filled with one of 6 black
 6 white, or no pieces) and the output is 64 multi-class classifiers.  Each classifier
 is represented by a soft-max layer that receives a single 13-feature probability vector.
 
-![chess_NN network diagram](https://github.com/colurw/chess_NN/assets/66322644/d7e9fce8-5cc0-487e-88b7-6c2e12d32a28)
+![image](https://github.com/colurw/chess_NN/assets/66322644/d7e9fce8-5cc0-487e-88b7-6c2e12d32a28 "chess_NN network diagram")
 
 Testing showed that wide and shallow networks performed better (and trained faster) 
 than deeper networks with a similar number of neurons, and that injecting a low level 
