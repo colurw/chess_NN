@@ -8,8 +8,8 @@ Stockfish chess engine, and then plays that move.
 Stockfish is the dominant chess engine, capable of beating the current best human player
 98-99% of the time.  It does this by searching through an exponentially-expanding tree
 of possible moves, for as many future turns as time allows.  Typically competitors try to 
-reduce its performance by limiting the duration of this search, or by forcing it to play
-non-optimum moves.
+reduce its performance by limiting the duration of this search, or by forcing it to select
+less-optimal moves.
 
 When tested on previously unseen chess puzzles from the testing dataset, Chess_NN 
 currently predicts Stockfish's optimum move for 47% of boards, and does so roughly 
