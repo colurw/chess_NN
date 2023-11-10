@@ -91,7 +91,7 @@ Used to check the training data are as expected / free of errors.
 <img src="https://github.com/colurw/chess_NN/assets/66322644/d768ea9f-b188-4423-8232-8ba7712a8182" align="right" width="450px"/>
 Creates training, validation, and testing datasets containing x,y pairs of one-
 hot tensors that represent puzzle board states.  A neural network is initialised, trained, 
-assessed for its ability to find the optimal move, then saves the model.  The training 
+assessed for its ability to find the optimal move, then saved.  The training 
 history is plotted, in order to help diagnose over-training or an under-powered network. <br><br>
 The figure to the right shows an over-fitted neural network.  After the eighth epoch of
 training, the validation loss starts to increase, whilst the training loss continues to
