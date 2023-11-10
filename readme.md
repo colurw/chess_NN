@@ -58,7 +58,7 @@ streak of poor random moves in a row, which can easily be taken advantage of by 
 reasonable human player, leading to an unsurmountable upper hand.
 
 However, it may be possible to extract much more (4-8x) training data from 
-the Lichess.com puzzle sequences (It currently only uses the first step of each sequence).
+the Lichess.com puzzle sequences (The encoder currently only uses the first step of each sequence).
 Also, if more RAM was available, much larger neural networks could be trained. Implementing both
 of these improvements would almost certainly result in a significant boost in performance.
 
