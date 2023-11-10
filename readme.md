@@ -153,5 +153,6 @@ limited to local hardware resources.
 *All 64 squares correctly predicted on 58% of test_set boards.
 
 Mate-In-Two Puzzle -> Stockfish Calculated Solution -> Chess_NN Predicted Solution:
-![image](https://github.com/colurw/chess_NN/assets/66322644/f6764edb-64e5-41ab-8759-973677898d24)
+![image](https://github.com/colurw/chess_NN/assets/66322644/871d2196-3fe9-4277-abbf-877b3dca8826)
+
 
