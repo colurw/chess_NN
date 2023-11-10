@@ -80,8 +80,9 @@ Applying the first move from the Lichess data creates the x_data, then applying
 the second move creates the y_data
 
 ### _3_data_viewer.py  
-When given a one-hot tensor, creates .png image of the chess 
-board.  Used to check the training data are as expected / free of errors.
+Renders a one-hot tensor into a .png image of a chess 
+board. The pieces are ASCII charcters typed over the squares whilst iterating through the one-hot tensor.
+Used to check the training data are as expected / free of errors.
 
 ### _4_trainer.py  
 <img src="https://github.com/colurw/chess_NN/assets/66322644/d768ea9f-b188-4423-8232-8ba7712a8182" align="right" width="450px"/>
