@@ -57,7 +57,7 @@ producing a sensible result.  In real gameplay, this means that the model can pl
 streak of poor random moves in a row, which can be easily taken advantage of by a 
 reasonable human player, leading to an unsurmountable upper hand.
 
-However, it may be possible to extract much more (4-8x) training data from 
+However, it may be possible to extract much more (3-5x) training data from 
 the Lichess.com puzzle sequences (The encoder currently only uses the first step of each sequence).
 Given extra RAM, larger neural networks could be trained. Making both
 of these improvements would almost certainly result in a boost in performance.
