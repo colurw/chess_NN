@@ -30,7 +30,7 @@ contain any openings (the first 10 or so moves by each player), hence the user i
 prompted to choose from a selection of fully-developed openings.
 
 The neural network is based on the Keras Functional API, which allows the user to 
-build networks with non-standard topologies.  The ChessNN input layer 
+build networks with non-standard topologies.  The Chess_NN input layer 
 accepts a 64x13 one-hot array (64 squares than can be empty, or filled by one of 6 black, 
 or 6 white, pieces).  The outputs are 64 multi-class classifiers.  Each classifier
 is a softmax layer that produces a 13-feature probability vector - where the highest 
