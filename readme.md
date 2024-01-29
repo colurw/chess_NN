@@ -35,7 +35,7 @@ build networks with non-standard topologies.  The ChessNN input layer
 accepts a 64x13 one-hot array (64 squares than can be empty, or filled by one of 6 black, 
 or 6 white, pieces).  The outputs are 64 multi-class classifiers.  Each classifier
 is a softmax layer that produces a 13-feature probability vector - where the highest 
-value identifies the predicted piece (or empty space) in that square.  
+value identifies the predicted piece label for that square.  
 
 ![image](https://github.com/colurw/chess_NN/assets/66322644/d7e9fce8-5cc0-487e-88b7-6c2e12d32a28 "chess_NN network diagram")
 
