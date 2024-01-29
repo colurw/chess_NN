@@ -27,8 +27,7 @@ The training data for the neural network are taken from Lichess.com's puzzles da
 which contains 1.2 million mid-game and end-game board states taken from human games,
 with the 'correct answer' being assessed by Stockfish.  The training data do not 
 contain any openings (the first 10 or so moves by each player), hence the user is
-prompted to choose from a selection of fully-developed openings.  This also handily avoids
-having to implement a castling move function. 
+prompted to choose from a selection of fully-developed openings.
 
 The neural network is based on the Keras Functional API, which allows the user to 
 build networks with non-standard topologies.  The ChessNN input layer 
