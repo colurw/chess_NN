@@ -4,7 +4,7 @@
 
 Chess_NN is chess engine powered by an ensemble of neural networks.  It has a web-app 
 frontend, playable in a browser, by virtue of Python's Django web framework.  When 
-given a board state, it attempts to predict what the best move would be - according to 
+given a board state, it attempts to predict what the best white move would be - according to 
 Stockfish chess engine, and then plays that move.
 
 Stockfish is the dominant chess engine, capable of beating the current best human player
