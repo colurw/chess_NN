@@ -1,5 +1,7 @@
 # Chess_NN
 
+"Chess has changed dramatically with all this computer stuff" - _G.M. Bobby Fischer_
+
 Chess_NN is chess engine powered by an ensemble of neural networks.  It has a web-app 
 frontend, playable in a browser, by virtue of Python's Django web framework.  When 
 given a board state, it attempts to predict what the best move would be - according to 
@@ -95,7 +97,7 @@ history is plotted, in order to help diagnose over-training or an under-powered 
 The graph (right) shows an over-fitted neural network.  After the eighth epoch of
 training, the validation loss starts to increase, whilst the training loss continues to
 decrease.  This happens when the model stops learning and instead begins to memorise the 
-training data.  This leads to some loss of its ability to generalise, when solving 
+training data.  This leads to a significant loss in its ability to generalise, and therefore solve
 previously-unseen puzzles. <br><br>
 The accuracy graph (left) is less useful here due to the small sample size - the value is 
 calculated based on one the results from a single board square. <br clear="right"/>
