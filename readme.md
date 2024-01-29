@@ -120,7 +120,7 @@ of producing, analogous to classic wisdom-of-the-crowds quantity estimation find
 The decision critera check the legality of the raw average of the predicted moves, before
 excluding illegal moves or predictions with disappearing/cloned pieces.  If the average still
 does not qualify as a legal move, the most confident prediction is chosen, based on an analysis
-of distances in the predicted piece vectors. If no legal predictions are found, a random move is
+of the probability vectors. If no legal predictions are found, a random move is
 chosen from a list of all legal moves.
 
 ### _7_ensemble_graph_maker.py  
