@@ -1,7 +1,4 @@
 # Chess_NN
-
-"Chess has changed dramatically with all of this computer stuff" - _G.M. Bobby Fischer_
-
 Chess_NN is chess engine powered by an ensemble of neural networks.  It has a web-app 
 frontend, playable in a browser, by virtue of Python's Django web framework.  When 
 given a board state, it attempts to predict what the best white move would be - according to 
