@@ -141,7 +141,9 @@ HttpRequest() back to Index.html <br><br>
 As the training data do not include early-game board states, the user must initially 
 select from one of three fully-developed opening options.  This avoids having to 
 implement a castling feature - moves of which were also excluded from the training 
-dataset to allow less-complex functions when encoding raw training data. <br clear="right"/>
+dataset to allow less-complex functions when encoding raw training data. <br><br>
+A containerised version of Chess_NN with a more secure front end is available <a href="https://github.com/colurw/chess_NN_webapp">here.</a> <br clear="right"/>
+
 
 ### m2_[filename].py  
 Does the same things as the above files, but only considers a subset of
