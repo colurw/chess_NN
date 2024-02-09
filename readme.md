@@ -113,7 +113,7 @@ predicted solutions are combined according to decision criteria to produce an
 output that is substantially more accurate than any single neural network is capable 
 of producing, analogous to classic wisdom-of-the-crowds quantity estimation findings.
 
-The decision critera check the legality of the raw average of all predicted moves, before
+The decision criteria check the legality of the raw average of all predicted moves, before
 excluding illegal moves or predictions with disappearing/cloned pieces.  If the average still
 does not qualify as a legal move, the most confident prediction is chosen, based on an analysis
 of the probability vectors. If no legal predictions are found, the ensemble resort to a random 
@@ -122,7 +122,7 @@ choice from a list of all legal moves.
 ### _7_ensemble_graph_maker.py  
 Visualises the performance gains made by increasing the
 number of neural networks in the ensemble.  A 'valid solo solve' means one ensemble member has moved 
-one piece without it being cloned or dissapeared.  A 'legal solo solve' means the move also conforms
+one piece without it being cloned or disappeared.  A 'legal solo solve' means the move also conforms
 to the standard rules of chess.  
 <img src="https://github.com/colurw/chess_NN/assets/66322644/08efebbb-eae9-40ed-8d75-311a526c9108" align="left" width="375px"/> <img src="https://github.com/colurw/chess_NN/assets/66322644/c0037b89-711b-40ab-9581-9126eed443f0" align="left" width="375px"/>
 <br clear="left"/>
@@ -136,8 +136,8 @@ Form data from the browser are sent back to views.py as POST requests, converted
 into tensors, then passed to ensemble_solver(), which returns a tensor representing 
 the move to be played in response.  <br><br>
 This tensor is converted by local_chess_tools.py into an image of the next 
-board state, and then into a base64 string, which can be sent as an argument of 
-HttpRequest() back to Index.html <br><br>
+board state, and then into a base64 string, which can be sent along with the Index.html
+template, back to the browser.<br><br>
 As the training data do not include early-game board states, the user must initially 
 select from one of three fully-developed opening options.  This avoids having to 
 implement a castling feature - moves of which were also excluded from the training 
