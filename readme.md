@@ -121,8 +121,8 @@ choice from a list of all legal moves.
 
 ### _7_ensemble_graph_maker.py  
 Visualises the performance gains made by increasing the
-number of neural networks in the ensemble.  A 'valid solo solve' means one ensemble member has moved 
-one piece without it being cloned or disappeared.  A 'legal solo solve' means the move also conforms
+number of neural networks in the ensemble.  A 'valid solo prediction' means one ensemble member has moved 
+one piece without it being cloned or disappeared.  A 'legal solo prediction' means that the move also conforms
 to the standard rules of chess.  
 <img src="https://github.com/colurw/chess_NN/assets/66322644/08efebbb-eae9-40ed-8d75-311a526c9108" align="left" width="375px"/> <img src="https://github.com/colurw/chess_NN/assets/66322644/c0037b89-711b-40ab-9581-9126eed443f0" align="left" width="375px"/>
 <br clear="left"/>
