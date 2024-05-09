@@ -408,3 +408,9 @@ def im_concat_4(im1, im2, im3, im4):
     im.paste(im4, (0, 3*im1.height))
     
     return im
+
+import matplotlib.pyplot as plt
+one_hot_to_png(one_hot_encode(fen_to_ascii('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')))
+plt.matshow(one_hot_encode(fen_to_ascii('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')))
+plt.show()
+

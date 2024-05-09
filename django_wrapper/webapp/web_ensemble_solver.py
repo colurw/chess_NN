@@ -21,6 +21,7 @@ def ensemble_solver(onehot_board_tensor):
     legal_total = np.zeros((64,13), dtype=float)
     max_lc_score =  -100000000000
     valid_preds = 0
+    valid_legal_preds = 0
     tag = 'none'
 
     # Get board
@@ -41,6 +42,7 @@ def ensemble_solver(onehot_board_tensor):
             # Sum remaining legal solo predictions
             flipped_fen = ct.swap_fen_colours(fen, turn='black')
             if ct.is_move_legal(flipped_fen, move) == True or remove_illegal == False:
+                valid_legal_preds += 1
                 legal_total = np.add(legal_total, y_predict)
                 # Get confidence score and keep record of most confident legal prediction
                 c_score = ct.confid_score(y_predict)
@@ -67,7 +69,7 @@ def ensemble_solver(onehot_board_tensor):
             best_predict = avg_leg_predict
             tag = 'avlv'
         else:
-            if valid_preds >= 1:
+            if valid_legal_preds >= 1:
                 # Use most confident legal solo prediction
                 best_predict = mcf_leg_predict
                 tag = 'mclv'
