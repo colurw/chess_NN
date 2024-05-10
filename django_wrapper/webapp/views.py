@@ -107,8 +107,8 @@ def index(request):
             fen = request.session.get('session_fen')
             moves = [str(move[:2]), str(move[2:])]
             # ..from black's perspective
-            flipped_fen = ct.swap_fen_colours(fen, turn='white') 
-            if ct.is_move_legal(flipped_fen, moves) == False:
+            flipped_notation = ct.swap_fen_colours(fen, turn='white') 
+            if ct.is_move_legal(flipped_notation, moves) == False:
                 
                 return HttpResponse("illegal move detected!")
 

@@ -40,8 +40,8 @@ def ensemble_solver(onehot_board_tensor):
         else:
             valid_preds += 1
             # Sum remaining legal solo predictions
-            flipped_fen = ct.swap_fen_colours(fen, turn='black')
-            if ct.is_move_legal(flipped_fen, move) == True or remove_illegal == False:
+            flipped_notation = ct.swap_fen_colours(fen, turn='black')
+            if ct.is_move_legal(flipped_notation, move) == True or remove_illegal == False:
                 valid_legal_preds += 1
                 legal_total = np.add(legal_total, y_predict)
                 # Get confidence score and keep record of most confident legal prediction
@@ -57,14 +57,14 @@ def ensemble_solver(onehot_board_tensor):
 
     # Apply criteria to choose best prediction
     move = ct.is_only_one_move(x_sample, avg_raw_predict)
-    flipped_fen = ct.swap_fen_colours(fen, turn='black')
-    if move != False and ct.is_move_legal(flipped_fen, move) == True:
+    flipped_notation = ct.swap_fen_colours(fen, turn='black')
+    if move != False and ct.is_move_legal(flipped_notation, move) == True:
         # Use average of all ensemble predictions
         best_predict = avg_raw_predict
         tag = 'avrw'
     else:
         move = ct.is_only_one_move(x_sample, avg_leg_predict)
-        if move != False and ct.is_move_legal(flipped_fen, move) == True:
+        if move != False and ct.is_move_legal(flipped_notation, move) == True:
             # Use average of legal ensemble predictions, if move is valid and legal
             best_predict = avg_leg_predict
             tag = 'avlv'
@@ -75,7 +75,7 @@ def ensemble_solver(onehot_board_tensor):
                 tag = 'mclv'
             else:
                 # Generate a random legal move
-                move = ct.random_legal_move(flipped_fen)
+                move = ct.random_legal_move(flipped_notation)
                 best_predict = ct.update_one_hot(x_sample, move)
                 tag = 'rndm'
     

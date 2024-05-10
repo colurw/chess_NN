@@ -409,8 +409,33 @@ def im_concat_4(im1, im2, im3, im4):
     
     return im
 
-import matplotlib.pyplot as plt
-one_hot_to_png(one_hot_encode(fen_to_ascii('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')))
-plt.matshow(one_hot_encode(fen_to_ascii('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')))
-plt.show()
 
+def most_similar_legal_white_move(FEN, target_tensor):
+    """ Compares the cosine similarities of all legal board tensors with a target 
+        board tensor and returns the most similar one """
+    
+    # convert FEN
+    ascii_board = fen_to_ascii(FEN)
+    current_state = one_hot_encode(ascii_board)
+    flipped_notation = swap_fen_colours(FEN, turn='black')   # for debugging only
+    board = chess.Board(FEN)
+
+    # find board tensors for all possible legal moves
+    candidates = []
+    for i, move in enumerate(board.legal_moves):
+        candidate = update_one_hot(current_state, move)
+        candidates.append(candidate)
+
+    # compare board tensors with target tensor and pick the closest match
+    scores = []
+    for candidate in candidates:
+        f_candidate = candidate.astype('float32')
+        # tensors are already normalised so dot product gives cosine between vectors
+        dot_product = np.matmul(f_candidate.ravel(), np.transpose(target_tensor.ravel()))
+        scores.append(dot_product)
+
+    print(scores)
+    print(np.argmax(scores))
+    closest_legal_tensor = candidates[np.argmax(scores)]
+    
+    return closest_legal_tensor

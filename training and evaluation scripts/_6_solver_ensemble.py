@@ -41,7 +41,7 @@ for i in (range(10000)):
     x_sample = x_test[rand_num]
     y_truth = y_test[rand_num]
     fen = one_hot_to_fen(x_sample, turn='black')
-    flipped_fen = swap_fen_colours(fen, turn='black')
+    flipped_notation = swap_fen_colours(fen, turn='black')
     # Evaluate board with every model
     raw_total = np.zeros((64,13), dtype=float)
     legal_total = np.zeros((64,13), dtype=float)
@@ -65,7 +65,7 @@ for i in (range(10000)):
         else:
             valid_preds += 1
             # Sum legal solo predictions
-            if is_move_legal(flipped_fen, moves) == True or remove_illegal == False:
+            if is_move_legal(flipped_notation, moves) == True or remove_illegal == False:
                 legal_total = np.add(legal_total, y_predict)
                 # Get confidence score and save most confident legal prediction
                 c_score = confid_score(y_predict)  # also see confid_score()
@@ -84,25 +84,27 @@ for i in (range(10000)):
     
     # Apply criteria to choose best prediction
     moves = is_only_one_move(x_sample, avg_raw_predict)
-    if moves != False and is_move_legal(flipped_fen, moves) == True:
+    if moves != False and is_move_legal(flipped_notation, moves) == True:
         # Use average of all ensemble predictions, if average is a valid and legal move
-        best_predict = avg_raw_predict
+        ensemble_predict = avg_raw_predict
     else:
         moves = is_only_one_move(x_sample, avg_leg_predict)
-        if moves != False and is_move_legal(flipped_fen, moves) == True:
+        if moves != False and is_move_legal(flipped_notation, moves) == True:
             # Use average of legal ensemble predictions, if average is a valid and legal move
-            best_predict = avg_leg_predict
+            ensemble_predict = avg_leg_predict
         else:
             if valid_preds >= 1:
                 # Use most confident legal solo prediction
-                best_predict = mcf_leg_predict
+                ensemble_predict = mcf_leg_predict
             else:
                 # Generate a random legal move
-                move = random_legal_move(flipped_fen)
-                best_predict = update_one_hot(x_sample, move)
+                move = random_legal_move(flipped_notation)
+                ensemble_predict = update_one_hot(x_sample, move)
+                ## Or... get closest legal board tensor to raw ensemble prediction
+                # ensemble_predict = most_similar_legal_white_move(flipped_notation, avg_raw_predict)
 
     # Convert prediction categorical probabilities and truth one-hot array into strings of category labels
-    pred_str = one_hot_to_unicode(best_predict)
+    pred_str = one_hot_to_unicode(ensemble_predict)
     puzzle_str = one_hot_to_unicode(y_truth)
     # Compare strings and tally results
     if pred_str == puzzle_str:
