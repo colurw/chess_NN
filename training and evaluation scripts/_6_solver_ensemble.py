@@ -101,7 +101,7 @@ for i in (range(10000)):
                 move = random_legal_move(flipped_notation)
                 ensemble_predict = update_one_hot(x_sample, move)
                 ## Or... get closest legal board tensor to raw ensemble prediction
-                # ensemble_predict = most_similar_legal_white_move(flipped_notation, avg_raw_predict)
+                # ensemble_predict = most_similar_legal_move(flipped_notation, avg_raw_predict)
 
     # Convert prediction categorical probabilities and truth one-hot array into strings of category labels
     pred_str = one_hot_to_unicode(ensemble_predict)

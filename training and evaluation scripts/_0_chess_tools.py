@@ -410,7 +410,7 @@ def im_concat_4(im1, im2, im3, im4):
     return im
 
 
-def most_similar_legal_white_move(FEN, target_tensor):
+def most_similar_legal_move(FEN, target_tensor):
     """ Compares the cosine similarities of all legal board tensors with a target 
         board tensor and returns the most similar one """
     
@@ -430,7 +430,7 @@ def most_similar_legal_white_move(FEN, target_tensor):
     scores = []
     for candidate in candidates:
         f_candidate = candidate.astype('float32')
-        # tensors are already normalised so dot product gives cosine between vectors
+        # dot product is proportional to cosine between vectors, given constant vector magnitudes
         dot_product = np.matmul(f_candidate.ravel(), np.transpose(target_tensor.ravel()))
         scores.append(dot_product)
 
