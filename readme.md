@@ -11,8 +11,8 @@ reduce its performance by limiting the duration of this search, or by forcing it
 less-optimal moves.
 
 When tested on previously unseen chess puzzles from the testing dataset, Chess_NN 
-currently predicts Stockfish's optimum move for 63% of boards, and does so approximately 
-1000x faster than Stockfish. In the remaining 37% of cases, it plays a non-optimal legal move of unknown quality.
+currently predicts Stockfish's optimum move for 63% of boards (and finds the move approximately 
+1000x faster than Stockfish can). In the remaining 37% of cases, it plays a non-optimal legal move of unknown quality.
 
 ## How A Neural Network Plays Chess
 
