@@ -75,9 +75,9 @@ def ensemble_solver(onehot_board_tensor):
                 tag = 'mclv'
             else:
                 # Generate a random legal move
-                move = ct.random_legal_move(flipped_notation)
-                best_predict = ct.update_one_hot(x_sample, move)
-                tag = 'rndm'
+                mslm_fen = ct.one_hot_to_fen(x_sample, turn='white')
+                best_predict = ct.most_similar_legal_move(mslm_fen, avg_raw_predict)
+                tag = 'mslm'
     
     # Return onehot board tensor
     return(best_predict, move, tag)
