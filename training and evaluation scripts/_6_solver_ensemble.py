@@ -26,7 +26,7 @@ model_1 = keras.models.load_model('models/general_solver_1')
 model_2 = keras.models.load_model('models/general_solver_2')
 model_3 = keras.models.load_model('models/general_solver_3')
 model_4 = keras.models.load_model('models/general_solver_4')
-ensemble = [model_1, model_2, model_3, model_4]
+ensemble = [model_1]#, model_2, model_3, model_4]
 
 # Calculate ensemble accuracy rate
 remove_illegal = True
@@ -35,19 +35,25 @@ at_least_one = 0
 rejected = 0
 illegal = 0
 no_valid_preds = 0
-for i in (range(10000)):
+mlsm_wins = 0
+
+for i in (range(6000)):
     # Get random board
     rand_num = random.sample(range(len(x_test)), 1)
     x_sample = x_test[rand_num]
     y_truth = y_test[rand_num]
     fen = one_hot_to_fen(x_sample, turn='black')
-    flipped_notation = swap_fen_colours(fen, turn='black')
-    # Evaluate board with every model
+    flipped_fen = swap_fen_colours(fen, turn='black')
+    
+    # Reset variables
     raw_total = np.zeros((64,13), dtype=float)
     legal_total = np.zeros((64,13), dtype=float)
-    max_lc_score =  -100000000000
+    max_lc_score =  -10000000000
     strike = 0
     valid_preds = 0
+    valid_legal_preds = 0
+
+    # Evaluate board with every model
     for model in ensemble:
         y_predict = model(x_sample)
         y_predict = np.array(y_predict).reshape(1,64,13)
@@ -65,7 +71,8 @@ for i in (range(10000)):
         else:
             valid_preds += 1
             # Sum legal solo predictions
-            if is_move_legal(flipped_notation, moves) == True or remove_illegal == False:
+            if is_move_legal(flipped_fen, moves) == True or remove_illegal == False:
+                valid_legal_preds +=1
                 legal_total = np.add(legal_total, y_predict)
                 # Get confidence score and save most confident legal prediction
                 c_score = confid_score(y_predict)  # also see confid_score()
@@ -80,29 +87,31 @@ for i in (range(10000)):
     # Find average of all predictions
     avg_raw_predict = raw_total / len(ensemble)
     # Find average of legal predictions
-    avg_leg_predict = legal_total / valid_preds
+    avg_leg_predict = legal_total           # no need to divide due to later argmax() 
     
     # Apply criteria to choose best prediction
     moves = is_only_one_move(x_sample, avg_raw_predict)
-    if moves != False and is_move_legal(flipped_notation, moves) == True:
+    if moves != False and is_move_legal(flipped_fen, moves) == True:
         # Use average of all ensemble predictions, if average is a valid and legal move
         ensemble_predict = avg_raw_predict
     else:
         moves = is_only_one_move(x_sample, avg_leg_predict)
-        if moves != False and is_move_legal(flipped_notation, moves) == True:
+        if moves != False and is_move_legal(flipped_fen, moves) == True:
             # Use average of legal ensemble predictions, if average is a valid and legal move
             ensemble_predict = avg_leg_predict
         else:
-            if valid_preds >= 1:
+            if valid_legal_preds >= 1:
                 # Use most confident legal solo prediction
                 ensemble_predict = mcf_leg_predict
             else:
-                # Generate a random legal move
-                move = random_legal_move(flipped_notation)
-                ensemble_predict = update_one_hot(x_sample, move)
-                ## Or... get closest legal board tensor to raw ensemble prediction
-                # ensemble_predict = most_similar_legal_move(flipped_notation, avg_raw_predict)
+                # # Generate a random legal move
+                # move = random_legal_move(flipped_fen)
+                # ensemble_predict = update_one_hot(x_sample, move)
 
+                # Get closest legal board tensor to raw ensemble prediction
+                mslm_fen = one_hot_to_fen(x_sample, turn='white')
+                ensemble_predict = most_similar_legal_move(mslm_fen, avg_raw_predict)
+                   
     # Convert prediction categorical probabilities and truth one-hot array into strings of category labels
     pred_str = one_hot_to_unicode(ensemble_predict)
     puzzle_str = one_hot_to_unicode(y_truth)
@@ -113,14 +122,30 @@ for i in (range(10000)):
         at_least_one += 1
     if i % 1000 == 0:
         print(i, 'solved')
-score = str(round(100*count/10000, 2))
+
+    # Test mslm() as the only criteria on all puzzles
+    mslm_fen = one_hot_to_fen(x_sample, turn='white')
+    mslm_predict = most_similar_legal_move(mslm_fen, avg_raw_predict)  
+    pred_str = one_hot_to_unicode(mslm_predict)
+    if pred_str == puzzle_str:
+        mlsm_wins += 1
+
+score = str(round(100*count/6000, 2))
 
 print(score, '% of puzzles accurately solved by ensemble average')
-print(100*at_least_one/10000, '% of puzzles accurately solved by at least one model')
-print(100*rejected/(10000*len(ensemble)), '% non-sensible solo solves rejected')
-print(100*illegal/(10000*len(ensemble)), '% illegal solo solves rejected')
-print(100*no_valid_preds/10000, '% of puzzles with no valid solo predictions')
+print(100*at_least_one/6000, '% of puzzles accurately solved by at least one model')
+print(100*rejected/(6000*len(ensemble)), '% non-sensible solo solves rejected')
+print(100*illegal/(6000*len(ensemble)), '% illegal solo solves rejected')
+print(100*no_valid_preds/6000, '% of puzzles with no valid solo predictions')
+print(100*mlsm_wins/6000, '% of puzzles accurately solved using most_similar_legal_move() only')
 
+
+
+# mslm() update
+# 1 model  last:  58.8%  first: 57.5%
+# 2 models  last: 60.1%  first: 59.4%
+# 3 models  last: 61.4%  first: 60.7%
+# 4 models  last: 62.8%  first: 61.6%
 
 # mate in one: (25% of training data each)
 # average solo: 66.2% win, 

@@ -433,9 +433,6 @@ def most_similar_legal_move(FEN, target_tensor):
         # dot product is proportional to cosine between vectors, given constant vector magnitudes
         dot_product = np.matmul(f_candidate.ravel(), np.transpose(target_tensor.ravel()))
         scores.append(dot_product)
-
-    print(scores)
-    print(np.argmax(scores))
     closest_legal_tensor = candidates[np.argmax(scores)]
     
     return closest_legal_tensor

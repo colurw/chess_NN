@@ -18,3 +18,4 @@ training data/mate_in_2.pickle
 training data/solution.pickle
 test.py
 *__init__*
+*cpython*
