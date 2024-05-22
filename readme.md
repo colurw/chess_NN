@@ -126,6 +126,11 @@ to the standard rules of chess.
 <img src="https://github.com/colurw/chess_NN/assets/66322644/3cb3bc53-001a-47e4-a804-47e9c6474c67" align="left" width="375px"/> <img src="https://github.com/colurw/chess_NN/assets/66322644/c0037b89-711b-40ab-9581-9126eed443f0" align="left" width="375px"/>
 <br clear="left"/>
 
+### _8_pgn_parser_encoder.py
+Searches through Portable Game Notation dumps from Lichess.com for suitable games, then transforms the data 
+into 64x13 one-hot tensors, suitable for machine learning.  Alternating moves are used to create the X and y data.
+Compared to the original 'puzzle' training data, the resulting dataset is _much_ larger, and includes opening moves and castlings.
+
 ### django web framework
 <img src="https://github.com/colurw/chess_NN/assets/66322644/b3d419ff-06b9-4444-85ba-99531d4db79c" align="right" width="300px"/>
 Creates an IP connection to the browser over the Localhost.  When Views.py is 

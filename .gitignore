@@ -10,7 +10,7 @@
 /models/matein2_2
 /models/matein2_3
 /training data/chess_puzzles.csv
-/__pycache__
+*__pycache__*
 _4_trainer copy.py
 mateIn2_white.csv
 mateIn2.csv
@@ -19,3 +19,5 @@ training data/solution.pickle
 test.py
 *__init__*
 *cpython*
+*pickle*
+lichess_db_2014-04.pgn
