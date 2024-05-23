@@ -21,3 +21,4 @@ test.py
 *cpython*
 *pickle*
 lichess_db_2014-04.pgn
+training data/lichess_db_standard_rated_2016-08.pgn.zst
