@@ -2,14 +2,13 @@
     players as white, then encodes alternating moves as x and y training data.
     https://database.lichess.org/ """
 
-import pickle
 import chess.pgn
 import io
 from _0_chess_tools import fen_to_ascii, one_hot_encode
 import numpy as np
 import zstandard as zstd
 
-ELO_LIMIT=2000
+MINIMUM_ELO=1900 
 
 x_data = []
 y_data = []
@@ -37,7 +36,7 @@ with zstd.open('training data/lichess_db_standard_rated_2016-08.pgn.zst', 'r') a
                 normal = False      
 
         # if line contains moves, all priors are true, and white wins, load game into python-chess
-        elif line[0:3] == '1. ' and classic and elo_rating > ELO_LIMIT and normal and '0' in line[-2]:
+        elif line[0:3] == '1. ' and classic and elo_rating > MINIMUM_ELO and normal and '0' in line[-2]:
             pgn_moves = io.StringIO(line)
             game = chess.pgn.read_game(pgn_moves)
             board = game.board()
@@ -64,6 +63,7 @@ with zstd.open('training data/lichess_db_standard_rated_2016-08.pgn.zst', 'r') a
 print(count, 'games encoded')
 print(len(x_data), len(y_data), 'moves encoded')
 
-with open("training data/whole_game_data.pickle", "wb") as file:
-    pickle.dump((x_data, y_data), file)
+np.save('whole_game_x.npy', x_data)
+np.save('whole_game_y.npy', y_data)
+
 
