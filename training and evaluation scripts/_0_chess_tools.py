@@ -413,19 +413,16 @@ def im_concat_4(im1, im2, im3, im4):
 def most_similar_legal_move(FEN, target_tensor):
     """ Compares the cosine similarities of all legal board tensors with a target 
         board tensor and returns the most similar one """
-    
     # convert FEN
     ascii_board = fen_to_ascii(FEN)
-    current_state = one_hot_encode(ascii_board)
-    flipped_notation = swap_fen_colours(FEN, turn='black')   # for debugging only
-    board = chess.Board(FEN)
-
+    current_tensor = one_hot_encode(ascii_board)
+    FEN = swap_fen_colours(FEN, turn='black')   
+    board = chess.Board(FEN, chess960=True)
     # find board tensors for all possible legal moves
     candidates = []
     for i, move in enumerate(board.legal_moves):
-        candidate = update_one_hot(current_state, move)
+        candidate = update_one_hot(current_tensor, move)
         candidates.append(candidate)
-
     # compare board tensors with target tensor and pick the closest match
     scores = []
     for candidate in candidates:
