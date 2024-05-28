@@ -25,3 +25,7 @@ training data/lichess_db_standard_rated_2016-08.pgn.zst
 .memmaps
 whole_game_1*
 *.npy
+.aws_lambda
+.tensorboard_logs
+*whole_game_2*
+*whole_game_3*

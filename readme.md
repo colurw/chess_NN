@@ -131,10 +131,13 @@ Searches through Portable Game Notation dumps from Lichess.com for suitable game
 into 64x13 one-hot tensors, suitable for machine learning.  Alternating moves are used to create the X and y data 
 Quality data are selected by imposing a minimum white ELO rating and ignoring blitz games.
 
-Compared to the original 'puzzle' training data, _much_ larger datasets are available, and early-game opening moves and castlings are included.
+Compared to the original 'puzzle' training data, _much_ larger datasets are available - and opening moves, piece promotions, and castlings are included.
 
-### _9_pgn_trainer.py
-Trains and evaluates models based on whole-game PGN data.  Uses memory mappings to handle the increased file sizes. 
+### _9a_pgn_trainer.py
+Trains and evaluates models based on whole-game PGN data.  Uses memory mappings to handle the increased file sizes.
+
+### _9b_azure_ml_client.py
+Greatly speeds up training by accessing a cloud GPU cluster from the local development environment, using Azure's Python-SDK.
 
 ### django web framework
 <img src="https://github.com/colurw/chess_NN/assets/66322644/b3d419ff-06b9-4444-85ba-99531d4db79c" align="right" width="300px"/>
@@ -147,10 +150,8 @@ the move to be played in response.  <br><br>
 This tensor is converted by local_chess_tools.py into an image of the next 
 board state, and then into a base64 string, which can be sent along with the Index.html
 template, back to the browser.<br><br>
-As the training data do not include early-game board states, the user must initially 
-select from one of three fully-developed opening options.  This avoids having to 
-implement a castling feature - moves of which were also excluded from the training 
-dataset to allow less-complex functions when encoding raw training data. <br><br>
+As the training data do not include early-game board states or castling moves, the user must initially 
+select from one of three fully-developed opening options. <br><br>
 A containerised version of Chess_NN with a more secure front end is available <a href="https://github.com/colurw/chess_NN_webapp">here.</a> <br clear="right"/>
 
 

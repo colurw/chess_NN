@@ -5,18 +5,18 @@ white-to-play for consistency when training neural network. """
 import csv
 import itertools
 
-# # Parse play as black puzzles from lichess database
-# count = 0
-# with open('training data/chess_puzzles.csv', 'r') as csvfile:
-#     reader = csv.reader(csvfile)
-#     for row in itertools.islice(reader, 3000000):
-#         if str(' w ') in str(row[1]):               # only get puzzles played as black 
-#             if str(row[2][5]) != ' ':               # ignore puzzle setups that promote a piece 
-#                 count = count + 1
-#                 with open('training data/allPuzzles_b.csv', 'a', newline='') as outfile:
-#                     writer = csv.writer(outfile)
-#                     writer.writerow(row[:4])
-#     print(count)
+# Parse play as black puzzles from lichess database
+count = 0
+with open('training data/chess_puzzles.csv', 'r') as csvfile:
+    reader = csv.reader(csvfile)
+    for row in itertools.islice(reader, 3000000):
+        if str(' w ') in str(row[1]):               # only get puzzles played as black 
+            if str(row[2][5]) != ' ':               # ignore puzzle setups that promote a piece 
+                count = count + 1
+                with open('training data/allPuzzles_b.csv', 'a', newline='') as outfile:
+                    writer = csv.writer(outfile)
+                    writer.writerow(row[:4])
+    print(count)
 
 # Parse play as white puzzles from lichess database
 count = 0

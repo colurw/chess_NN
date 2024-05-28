@@ -19,14 +19,18 @@ with open("training data/all_solns_w.pickle", "rb") as file:
 print('\ncreating test dataset...')
 x_test = np.array(all_puzzles_1[1300000:], dtype='bool')
 y_test = np.array(solutions_1[1300000:], dtype='bool')
+# x_test = np.load('whole_game_x_test.npy')
+# y_test = np.load('whole_game_y_test.npy')
 print(x_test.shape, y_test.shape, '\n')
 
 # Load models from chess_trainer.py
 model_1 = keras.models.load_model('models/general_solver_1')
 model_2 = keras.models.load_model('models/general_solver_2')
-model_3 = keras.models.load_model('models/general_solver_3')
-model_4 = keras.models.load_model('models/general_solver_4')
-ensemble = [model_1]#, model_2, model_3, model_4]
+# model_3 = keras.models.load_model('models/general_solver_3')
+# model_4 = keras.models.load_model('models/general_solver_4')
+# model_5 = keras.models.load_model('models/whole_game_3')
+# model_6 = keras.models.load_model('models/whole_game_4')
+ensemble = [model_1, model_2]#, model_3, model_4]
 
 # Calculate ensemble accuracy rate
 remove_illegal = True
@@ -37,7 +41,7 @@ illegal = 0
 no_valid_preds = 0
 mlsm_wins = 0
 
-for i in (range(6000)):
+for i in (range(10000)):
     # Get random board
     rand_num = random.sample(range(len(x_test)), 1)
     x_sample = x_test[rand_num]
@@ -75,7 +79,7 @@ for i in (range(6000)):
                 valid_legal_preds +=1
                 legal_total = np.add(legal_total, y_predict)
                 # Get confidence score and save most confident legal prediction
-                c_score = confid_score(y_predict)  # also see confid_score()
+                c_score = confid_score(y_predict) 
                 if c_score > max_lc_score:
                     mcf_leg_predict = y_predict
                     max_lc_score = c_score
@@ -104,10 +108,6 @@ for i in (range(6000)):
                 # Use most confident legal solo prediction
                 ensemble_predict = mcf_leg_predict
             else:
-                # # Generate a random legal move
-                # move = random_legal_move(flipped_fen)
-                # ensemble_predict = update_one_hot(x_sample, move)
-
                 # Get closest legal board tensor to raw ensemble prediction
                 mslm_fen = one_hot_to_fen(x_sample, turn='white')
                 ensemble_predict = most_similar_legal_move(mslm_fen, avg_raw_predict)
@@ -130,19 +130,27 @@ for i in (range(6000)):
     if pred_str == puzzle_str:
         mlsm_wins += 1
 
-score = str(round(100*count/6000, 2))
+score = str(round(100*count/10000, 2))
 
 print(score, '% of puzzles accurately solved by ensemble average')
-print(100*at_least_one/6000, '% of puzzles accurately solved by at least one model')
-print(100*rejected/(6000*len(ensemble)), '% non-sensible solo solves rejected')
-print(100*illegal/(6000*len(ensemble)), '% illegal solo solves rejected')
-print(100*no_valid_preds/6000, '% of puzzles with no valid solo predictions')
-print(100*mlsm_wins/6000, '% of puzzles accurately solved using most_similar_legal_move() only')
+print(100*at_least_one/10000, '% of puzzles accurately solved by at least one model')
+print(100*rejected/(10000*len(ensemble)), '% non-sensible solo solves rejected')
+print(100*illegal/(10000*len(ensemble)), '% illegal solo solves rejected')
+print(100*no_valid_preds/10000, '% of puzzles with no valid solo predictions')
+print(100*mlsm_wins/10000, '% of puzzles accurately solved using most_similar_legal_move() only')
 
 
+
+# whole_game_4 (+ whole_game_3)
+# 31.3 (34.6)% of puzzles accurately solved by ensemble average
+# 12.6 (16.1)% of puzzles accurately solved by at least one model
+# 76.2 (77.4)% non-sensible solo solves rejected
+# 5.4 (5.2)% illegal solo solves rejected
+# 76.2 (68.1)% of puzzles with no valid solo predictions
+# 28.1 (30.4)% of puzzles accurately solved using most_similar_legal_move() only
 
 # mslm() update
-# 1 model  last:  58.8%  first: 57.5%
+# 1 model  last:  58.8%  first: 57.5%  
 # 2 models  last: 60.1%  first: 59.4%
 # 3 models  last: 61.4%  first: 60.7%
 # 4 models  last: 62.8%  first: 61.6%
