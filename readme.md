@@ -127,9 +127,7 @@ to the standard rules of chess.
 <br clear="left"/>
 
 ### whole_game/_1_pgn_parser_encoder.py
-Searches through Portable Game Notation dumps from Lichess.com for suitable games, then transforms the data 
-into 64x13 one-hot tensors, suitable for machine learning.  Alternating moves are used to create the X and y data 
-Quality data are selected by imposing a minimum white ELO rating and ignoring blitz games.
+Searches through Portable Game Notation dumps from Lichess.com for suitable games, then transforms the moves list into 64x13 one-hot tensors suitable for machine learning.  Alternating moves are used to create the X and y data.  Quality data are selected by imposing a minimum white ELO rating of 'expert' and ignoring blitz games.
 
 Compared to the original 'puzzle' training data, _much_ larger datasets are available - and opening moves, piece promotions, and castlings are included.
 
@@ -137,7 +135,7 @@ Compared to the original 'puzzle' training data, _much_ larger datasets are avai
 Trains and evaluates models based on whole-game PGN data.  Uses memory mappings to handle the increased file sizes.
 
 ### whole_game/_3_azure_ml_client.py
-Greatly speeds up training by accessing a cloud GPU cluster from the local development environment, using Azure's Python-SDK.
+Greatly speeds up training by accessing cloud GPU compute from the local development environment using Azure's Python-SDK.
 
 ### whole_game/_4_pgn_solver_ensemble.py
 Uses python-chess to check the legality of moves when working through the decision criteria.  This allows any predicted white castlings to be recognised as a legal move.
