@@ -29,3 +29,4 @@ whole_game_1*
 .tensorboard_logs
 *whole_game_2*
 *whole_game_3*
+_6_solver_ensembleOLD.py

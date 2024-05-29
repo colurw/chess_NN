@@ -385,7 +385,7 @@ def im_concat_2(im1, im2):
     im = Image.new('RGB', (im1.width + im2.width, im1.height))
     im.paste(im1, (0, 0))
     im.paste(im2, (1*im1.width, 0))
-    
+
     return im
 
 
@@ -395,7 +395,7 @@ def im_concat_3(im1, im2, im3):
     im.paste(im1, (0, 0))
     im.paste(im2, (1*im1.width, 0))
     im.paste(im3, (2*im1.width, 0))
-    
+
     return im
 
 
@@ -406,24 +406,27 @@ def im_concat_4(im1, im2, im3, im4):
     im.paste(im2, (0, 1*im1.height))
     im.paste(im3, (0, 2*im1.height))
     im.paste(im4, (0, 3*im1.height))
-    
+
     return im
 
 
-def most_similar_legal_move(FEN, target_tensor):
-    """ Compares the cosine similarities of all legal board tensors with a target 
-        board tensor and returns the most similar one """
-    # convert FEN
+def find_legal_moves(FEN):
+    """ returns a list of candidate board tensors with available moves applied """
+    candidates = []
     ascii_board = fen_to_ascii(FEN)
     current_tensor = one_hot_encode(ascii_board)
     FEN = swap_fen_colours(FEN, turn='black')   
     board = chess.Board(FEN, chess960=True)
-    # find board tensors for all possible legal moves
-    candidates = []
     for i, move in enumerate(board.legal_moves):
         candidate = update_one_hot(current_tensor, move)
         candidates.append(candidate)
-    # compare board tensors with target tensor and pick the closest match
+
+    return candidates
+
+
+def most_similar_move(candidates, target_tensor):
+    """ Compares the cosine similarities of all legal board tensors with a target 
+        board tensor and returns the most similar one """
     scores = []
     for candidate in candidates:
         f_candidate = candidate.astype('float32')
@@ -433,3 +436,13 @@ def most_similar_legal_move(FEN, target_tensor):
     closest_legal_tensor = candidates[np.argmax(scores)]
     
     return closest_legal_tensor
+
+
+def booleanise(tensor):
+    """ convert tensor from categorical probabilities [1,64,13] to one-hot [64,13] """
+    tensor = np.squeeze(tensor) 
+    one_hot_tensor = np.zeros(shape=(64,13), dtype=bool) 
+    for square, piece_vector in enumerate(tensor):
+        index = np.argmax(piece_vector)
+        one_hot_tensor[square][index] = 1 
+    return one_hot_tensor
