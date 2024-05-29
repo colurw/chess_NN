@@ -4,9 +4,9 @@
 
 import chess.pgn
 import io
-from _0_chess_tools import fen_to_ascii, one_hot_encode
 import numpy as np
 import zstandard as zstd
+from training_and_evaluation_scripts._0_chess_tools import fen_to_ascii, one_hot_encode
 
 MINIMUM_ELO=1900 
 

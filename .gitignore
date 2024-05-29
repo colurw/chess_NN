@@ -30,3 +30,9 @@ whole_game_1*
 *whole_game_2*
 *whole_game_3*
 _6_solver_ensembleOLD.py
+training data/allPuzzles_b.csv
+training data/allPuzzles_conv_w.csv
+training data/allPuzzles_w.csv
+training graphs/whole_game/n=1024,bn,1024_bs=1024_4000k_wg1.png
+training graphs/whole_game/n=1024,bn,1024_bs=1024_4000k.png
+training graphs/whole_game/n=1024,bn,1024_bs=1024_4000k_wg2.png

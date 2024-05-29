@@ -6,7 +6,7 @@ import numpy as np
 import pickle
 from tensorflow import keras
 import random
-from _0_chess_tools import *
+from training_and_evaluation_scripts._0_chess_tools import *
 
 # Get pickled data from encoder.py
 with open("training data/all_puzz_w.pickle", "rb") as file:

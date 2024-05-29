@@ -425,8 +425,8 @@ def find_legal_moves(FEN):
 
 
 def most_similar_move(candidates, target_tensor):
-    """ Compares the cosine similarities of all legal board tensors with a target 
-        board tensor and returns the most similar one """
+    """ Compares the cosine similarities of candidate tensors with a target 
+        tensor and returns the most similar one """
     scores = []
     for candidate in candidates:
         f_candidate = candidate.astype('float32')
@@ -445,4 +445,5 @@ def booleanise(tensor):
     for square, piece_vector in enumerate(tensor):
         index = np.argmax(piece_vector)
         one_hot_tensor[square][index] = 1 
+
     return one_hot_tensor

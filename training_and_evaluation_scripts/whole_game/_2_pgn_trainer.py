@@ -9,7 +9,7 @@ from keras import layers
 import matplotlib.pyplot as plt
 import random
 import time
-from _0_chess_tools import reshape_output, one_hot_to_unicode
+from training_and_evaluation_scripts._0_chess_tools import reshape_output, one_hot_to_unicode
 import gc
 import os
 
