@@ -126,18 +126,21 @@ to the standard rules of chess.
 <img src="https://github.com/colurw/chess_NN/assets/66322644/3cb3bc53-001a-47e4-a804-47e9c6474c67" align="left" width="375px"/> <img src="https://github.com/colurw/chess_NN/assets/66322644/c0037b89-711b-40ab-9581-9126eed443f0" align="left" width="375px"/>
 <br clear="left"/>
 
-### _8_pgn_parser_encoder.py
+### whole_game/_1_pgn_parser_encoder.py
 Searches through Portable Game Notation dumps from Lichess.com for suitable games, then transforms the data 
 into 64x13 one-hot tensors, suitable for machine learning.  Alternating moves are used to create the X and y data 
 Quality data are selected by imposing a minimum white ELO rating and ignoring blitz games.
 
 Compared to the original 'puzzle' training data, _much_ larger datasets are available - and opening moves, piece promotions, and castlings are included.
 
-### _9a_pgn_trainer.py
+### whole_game/_2_pgn_trainer.py
 Trains and evaluates models based on whole-game PGN data.  Uses memory mappings to handle the increased file sizes.
 
-### _9b_azure_ml_client.py
+### whole_game/_3_azure_ml_client.py
 Greatly speeds up training by accessing a cloud GPU cluster from the local development environment, using Azure's Python-SDK.
+
+### whole_game/_4_pgn_solver_ensemble.py
+Uses python-chess to check the legality of moves when working through the decision criteria.  This allows any predicted white castlings to be recognised as a legal move.
 
 ### django web framework
 <img src="https://github.com/colurw/chess_NN/assets/66322644/b3d419ff-06b9-4444-85ba-99531d4db79c" align="right" width="300px"/>
