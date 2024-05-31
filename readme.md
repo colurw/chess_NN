@@ -145,16 +145,12 @@ Uses python-chess to check the legality of moves when working through the decisi
 ### django web framework
 <img src="https://github.com/colurw/chess_NN/assets/66322644/b3d419ff-06b9-4444-85ba-99531d4db79c" align="right" width="300px"/>
 Creates an IP connection to the browser over the Localhost.  When Views.py is 
-called by Urls.py, it returns data that populate the Index.html template with the 
+called by Urls.py, it returns data that populate the Play.html template with the 
 current board image and relevant messages.  <br><br>
 Form data from the browser are sent back to views.py as POST requests, converted
 into tensors, then passed to ensemble_solver(), which returns a tensor representing 
-the move to be played in response.  <br><br>
-This tensor is converted by local_chess_tools.py into an image of the next 
-board state, and then into a base64 string, which can be sent along with the Index.html
-template, back to the browser.<br><br>
-As the training data do not include early-game board states or castling moves, the user must initially 
-select from one of three fully-developed opening options. <br><br>
+the board-state with the AI response applied.  <br><br>
+This tensor is converted by local_chess_tools.py into an image, which can be sent as a base-64 string back to the browser.  <br><br>
 A containerised version of Chess_NN with a more secure front end is available <a href="https://github.com/colurw/chess_NN_webapp">here.</a> <br clear="right"/>
 
 
