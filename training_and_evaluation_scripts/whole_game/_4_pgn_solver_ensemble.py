@@ -6,8 +6,14 @@ import numpy as np
 import pickle
 from tensorflow import keras
 import random
-from training_and_evaluation_scripts._0_chess_tools import *
-
+import os
+import sys
+import inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir) 
+import _0_chess_tools as ct
+ 
 # Get pickled data from encoder.py
 with open("training data/all_puzz_w.pickle", "rb") as file:
     all_puzzles_1 = pickle.load(file) 
@@ -17,8 +23,8 @@ with open("training data/all_solns_w.pickle", "rb") as file:
 
 # Create datasets
 print('\ncreating test dataset...')
-x_test = np.array(all_puzzles_1[1300000:], dtype='bool')
-y_test = np.array(solutions_1[1300000:], dtype='bool')
+x_test = np.array(all_puzzles_1[300000:], dtype='bool')
+y_test = np.array(solutions_1[300000:], dtype='bool')
 # x_test = np.load('whole_game_x_test.npy')
 # y_test = np.load('whole_game_y_test.npy')
 print(x_test.shape, y_test.shape, '\n')
@@ -43,8 +49,8 @@ for i in (range(3000)):
     rand_num = random.sample(range(len(x_test)), 1)
     x_sample = x_test[rand_num]
     y_truth = y_test[rand_num]
-    fen = one_hot_to_fen(x_sample, turn='white')
-    allowed_moves = find_legal_moves(fen)
+    fen = ct.one_hot_to_fen(x_sample, turn='white')
+    allowed_moves = ct.find_legal_moves(fen)
     
     # Reset variables
     raw_total = np.zeros((64,13), dtype=float)
@@ -60,20 +66,20 @@ for i in (range(3000)):
         # Sum all predictions
         raw_total = np.add(raw_total, y_predict)
         # Check if solo output is correct and record stats
-        pred_str = one_hot_to_unicode(y_predict)
-        puzzle_str = one_hot_to_unicode(y_truth)
+        pred_str = ct.one_hot_to_unicode(y_predict)
+        puzzle_str = ct.one_hot_to_unicode(y_truth)
         if pred_str == puzzle_str:
             strike += 1
 
         # Compare prediction to all possible legal moves
-        y_predict_bool = booleanise(y_predict)
+        y_predict_bool = ct.booleanise(y_predict)
         for tensor in allowed_moves:
             if np.all(y_predict_bool == tensor):
                 legal_total = np.add(legal_total, y_predict)
                 legal_count += 1
 
             # Get confidence score and save most confident legal prediction
-            c_score = confid_score(y_predict) 
+            c_score = ct.confid_score(y_predict) 
             if c_score > max_lc_score:
                 mcf_leg_predict = y_predict
                 max_lc_score = c_score
@@ -85,13 +91,13 @@ for i in (range(3000)):
     avg_leg_predict = legal_total                  # no need to divide due to later argmax() 
     
     # Apply criteria to choose best prediction
-    avg_raw_bool = booleanise(avg_raw_predict)
+    avg_raw_bool = ct.booleanise(avg_raw_predict)
     for tensor in allowed_moves:
         if np.all(avg_raw_bool == tensor):
             ensemble_predict = avg_raw_predict
 
         else:
-            avg_legal_bool = booleanise(avg_leg_predict)
+            avg_legal_bool = ct.booleanise(avg_leg_predict)
             for tensor in allowed_moves:
                 if np.all(avg_legal_bool == tensor):
                     ensemble_predict = avg_leg_predict
@@ -102,11 +108,11 @@ for i in (range(3000)):
                         ensemble_predict = mcf_leg_predict
 
                     else:
-                        ensemble_predict = most_similar_move(allowed_moves, avg_raw_predict) # can this just be 'fen'?
+                        ensemble_predict = ct.most_similar_move(allowed_moves, avg_raw_predict) 
                    
     # Convert prediction categorical probabilities and truth one-hot array into strings of category labels
-    pred_str = one_hot_to_unicode(ensemble_predict)
-    puzzle_str = one_hot_to_unicode(y_truth)
+    pred_str = ct.one_hot_to_unicode(ensemble_predict)
+    puzzle_str = ct.one_hot_to_unicode(y_truth)
     # Compare strings and tally results
     if pred_str == puzzle_str:
         count += 1

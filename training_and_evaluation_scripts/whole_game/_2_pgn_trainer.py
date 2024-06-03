@@ -9,9 +9,15 @@ from keras import layers
 import matplotlib.pyplot as plt
 import random
 import time
-from training_and_evaluation_scripts._0_chess_tools import reshape_output, one_hot_to_unicode
 import gc
 import os
+import sys
+import inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir) 
+import _0_chess_tools as ct
+
 
 MODEL_NAME = 'whole_game_4'
 LOAD_PRETRAINED = False
@@ -54,8 +60,8 @@ print('x_train:', x_train.shape, ' y_train:', y_train.shape)
 print('x_test:', x_test.shape,'  y_test:', y_test.shape)
 
 # Reshape y data to suit network with 64 branched outputs: list[board_square, ndarray[puzzle_id, piece_ohe_vector]]
-yy_train = reshape_output(y_train, 64)
-yy_test = reshape_output(y_test, 64)
+yy_train = ct.reshape_output(y_train, 64)
+yy_test = ct.reshape_output(y_test, 64)
 
 
 if MEMORY_MAPPING:
@@ -145,8 +151,8 @@ if EVALUATE_BOARDWISE_ACCURACY:
         y_predict = np.array(y_predict)
 
         # Convert y_predict categorical probabilities and y_truth one-hot array into strings of category labels
-        predict_str = one_hot_to_unicode(y_predict)
-        puzzle_str = one_hot_to_unicode(y_truth)
+        predict_str = ct.one_hot_to_unicode(y_predict)
+        puzzle_str = ct.one_hot_to_unicode(y_truth)
         if predict_str == puzzle_str:
             count += 1
         score = str(round(100*count/10000, 3))

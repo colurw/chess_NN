@@ -6,7 +6,7 @@ import chess.pgn
 import io
 import numpy as np
 import zstandard as zstd
-from training_and_evaluation_scripts._0_chess_tools import fen_to_ascii, one_hot_encode
+from .. import _0_chess_tools as ct
 
 MINIMUM_ELO=1900 
 
@@ -44,8 +44,8 @@ with zstd.open('training data/lichess_db_standard_rated_2016-08.pgn.zst', 'r') a
             # create one-hot training data
             for index, move in enumerate(game.mainline_moves()):
                 board.push(move)
-                ascii_board = fen_to_ascii(board.fen())
-                tensor = one_hot_encode(ascii_board)
+                ascii_board = ct.fen_to_ascii(board.fen())
+                tensor = ct.one_hot_encode(ascii_board)
                 # ...from black's perspective
                 flipped = np.flipud(tensor)    
 
